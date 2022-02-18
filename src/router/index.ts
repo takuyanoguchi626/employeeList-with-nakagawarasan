@@ -1,29 +1,40 @@
-import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter, { RouteConfig } from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
+  // // パスが登録されていない場合はログイン画面へ(LoginAdmin.vueを作成したらコメントを外してください)
+  // {
+  //   path: "*",
+  //   component: () => import("../components/LoginAdmin.vue"),
+  // },
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/logoutAdmin",
+    component: () => import("../views/LogoutAdmin.vue"),
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+    path: "/employeeDetail/:id",
+    component: () => import("../views/EmployeeDetail.vue"),
+  },
+  {
+    path: "/employeeList",
+    component: () => import("../views/EmployeeList.vue"),
+  },
+  {
+    path: "/loginAdmin",
+    component: () => import("../views/LoginAdmin.vue"),
+  },
+  {
+    path: "/registerAdmin",
+    component: () => import("../views/RegisterAdmin.vue"),
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
